@@ -17,6 +17,7 @@ precoPorHora = Convert.ToDecimal(Console.ReadLine());
 Estacionamento es = new Estacionamento(precoInicial, precoPorHora);
 
 string opcao = string.Empty;
+int opcaoSaida = 2;
 bool exibirMenu = true;
 
 // Realiza o loop do menu
@@ -44,11 +45,41 @@ while (exibirMenu)
             break;
 
         case "4":
-            exibirMenu = false;
+            Console.WriteLine("Deseja sair do sistema?");
+            Console.WriteLine();
+            Console.WriteLine("Digite 1 para sim e 2 para não.");
+            string respostaOpcaoSaida = Console.ReadLine();
+            if(int.TryParse(respostaOpcaoSaida, out opcaoSaida))
+            {
+                if(opcaoSaida == 1)
+                {
+                    Console.WriteLine("Sua sessão foi encerrada com sucesso. Continue sendo incrível!");
+                    Environment.Exit(0);
+                    //exibirMenu = false;
+                }
+                else if (opcaoSaida == 2)
+                {
+                    exibirMenu = true;
+                }
+                else
+                {
+                    Console.WriteLine("Opção inválida. Pressione qualquer tecla para continuar.");
+                    Console.ReadKey();
+                    exibirMenu = true;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Entrada inválida. Pressione qualquer tecla para continuar.");
+                Console.ReadKey();
+            }
+
+            // exibirMenu = false;
             break;
 
         default:
-            Console.WriteLine("Opção inválida");
+            Console.WriteLine("Opção inválida. Pressione qualquer tecla para continuar.");
+            Console.ReadKey();
             break;
     }
 
